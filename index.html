@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hari ini</title>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 20px;
+        padding: 30px;
+        background-color: #fff0fe;
+        border: 5px solid #ff6969;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(255,105,180,0.3);
+    }
+    input, button {
+        padding: 8px;
+        font-size: 16px;
+    }
+    #sapaan {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #2c3e50;
+    }
+    .corner-decoration {
+        position: fixed;
+        font-size: 2em;
+        z-index: 10;
+    }
+    </style>
+</head>
+<body>
+    <h1>Selamat datang di halaman utama</h1>
+    <hr>
+    <p>Masukan Tanggal</p>
+    <form id="dateForm" action="/welcome" method="get">
+        <input type="date" id="birthdate" name="date" placeholder="Tanggal Lahir">
+    </form>
+    <p>Masukan Nama Anda</p>
+    <form id="nameForm" action="/welcome" method="post">
+        <input type="text" id="nama" name="name" placeholder="Nama Anda">
+        <button type="button" onclick="sapa()">benar</button>
+    </form><hr>
+    <div id="sapaan"></div>
+    <div id="doa"></div>
+
+    <script>
+        function sapa() {
+            const nama = document.getElementById("nama").value.trim();
+            const sapaanDiv = document.getElementById("sapaan");
+            const doaDiv = document.getElementById("doa");
+
+            if (nama === "") {
+                sapaanDiv.textContent = "Silakan masukkan nama terlebih dahulu.";
+                sapaanDiv.style.color = "red";
+                doaDiv.textContent = "";
+            } else {
+                sapaanDiv.textContent = `🎉 Selamat Ulang Tahun, ${nama}! 
+                “Hope your special day brings you lots of joy.” 🎂`;
+                sapaanDiv.style.color = "#2c3e50";
+                doaDiv.innerHTML = `<p>Doa terbaik untukmu:</p>
+                <p>"Ya Rabbi, di hari spesial ini kami memohon keberkahan-Mu. Tambahkan umur dengan ketaatan, karuniakan rezeki yang halal, dan letakkanlah kebahagiaan dalam setiap langkah. Jadikanlah tahun yang baru ini kesempatan untuk menjadi pribadi yang lebih baik. Aamiin."</p>
+                    <p>Tetaplah rendah hati dan tebarkan kebaikan di sekelilingmu 🌟</p>`;
+            }
+        }
+
+    </script>
+</body>
+</html>
